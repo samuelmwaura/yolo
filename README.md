@@ -1,7 +1,7 @@
-STEPS TO SOLVE THE IP
+MY LIST OF STEPS TO SOLVE THE IP
 
 1. Make sure that the app is running locally in my machine
-   Fire up the FE server by {npm intall, npm start}
+   Fire up the FE server by {npm install, npm start}
    Fire up the node backend server by {npm install , npm start}
    Install Mongodb in the system and start the appplication to run on port 27017
 2. Access the application in the browser on 127.0.0.1:3000 to access the application in the browser
