@@ -12,10 +12,12 @@ STEPS TO SOLVE THE IP
 7. Run a container from the backend image to confirm that it works
 8. Create the FE image 
 9. Run a container from the FE image to confirm that the container works.
+10. Create a docker volume for data storage for my mongodb container and connect it
+10. Run my BE, FE and Mongo containers in a manual network {BE + mongo in one} and {BE + fe in another network}
+11. Once confirmed Working, now move on to the docker compose file that implements the networks between my services automatically
 10. Create the docker compose file.yml
     Create the BE service
     Create FE service
     Create Mongodb service
-    Create the backend and db network
-    create the FE and backend network
 11. Test for spinning and pulling down of services using the docker compose file
+
