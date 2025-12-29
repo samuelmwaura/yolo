@@ -19,5 +19,6 @@ STEPS TO SOLVE THE IP
     Create the BE service
     Create FE service
     Create Mongodb service
+    Indicate the volume and the networks for each of the containers
 11. Test for spinning and pulling down of services using the docker compose file
 
