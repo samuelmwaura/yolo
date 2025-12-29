@@ -1,0 +1,38 @@
+version: "3.7"
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      -yolo_app_data: /data/db
+    networks:
+      -yolo_backend_db_network
+    
+  yolo_backend:
+    build: ./backend
+    dockerfile: backend.dockerfile
+    ports:
+      - "5001:5000"
+    depends_on:
+      - mongodb
+    networks:
+      -yolo_backend_db_network
+      -yolo_backend_frontend_network
+
+  yolo_frontend:
+    build: ./frontend
+    dockerfile: frontend.dockerfile
+    ports:
+    - "3000:3000"
+    depends_on:
+      - yolo_backend
+    networks:
+      -yolo_backend_frontend_network
+
+
+
+
+# Main components in my docker compose file:
+# yolo Db service, yolo BE service, yolo FE service, Volumes, Networks. For each service I then define {PORTS, VOLUMES, networks, depends_on, environment, image to build from, container name e.t.c}
+
