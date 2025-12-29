@@ -11,6 +11,7 @@ services:
       - yolo_backend_db_network
     
   yolo_backend:
+    image: sammwaura/yolo_backend:v1.0.3
     build: 
       context: ./backend
       dockerfile: backend.dockerfile
@@ -23,6 +24,7 @@ services:
       - yolo_backend_frontend_network
 
   yolo_frontend:
+    image: sammwaura/yolo_frontend:v1.0.3
     build:
       context: ./client
       dockerfile: frontend.dockerfile
