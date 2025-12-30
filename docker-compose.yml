@@ -7,7 +7,7 @@ services:
     volumes:
       - yolo_app_data:/data/db
     networks:
-      - yolo_backend_db_network
+      - backend_db_network
     
   backend:
     image: sammwaura/yolo_backend:v1.0.3
@@ -19,8 +19,8 @@ services:
     depends_on:
       - mongodb
     networks:
-      - yolo_backend_db_network
-      - yolo_backend_frontend_network
+      - backend_db_network
+      - backend_frontend_network
 
   client:
     image: sammwaura/yolo_frontend:v1.0.3
@@ -32,15 +32,15 @@ services:
     depends_on:
       - backend
     networks:
-      - yolo_backend_frontend_network
+      - backend_frontend_network
 
 volumes:
   yolo_app_data:
     driver: local
 networks:
-  yolo_backend_db_network:
+  backend_db_network:
     driver: bridge
-  yolo_backend_frontend_network:
+  backend_frontend_network:
     driver: bridge
 
 # Main components in my docker compose file:
