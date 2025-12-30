@@ -1,4 +1,3 @@
-version: "3.7"
 services:
   mongodb:
     image: mongo
@@ -10,7 +9,7 @@ services:
     networks:
       - yolo_backend_db_network
     
-  yolo_backend:
+  backend:
     image: sammwaura/yolo_backend:v1.0.3
     build: 
       context: ./backend
@@ -23,7 +22,7 @@ services:
       - yolo_backend_db_network
       - yolo_backend_frontend_network
 
-  yolo_frontend:
+  client:
     image: sammwaura/yolo_frontend:v1.0.3
     build:
       context: ./client
@@ -31,7 +30,7 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - yolo_backend
+      - backend
     networks:
       - yolo_backend_frontend_network
 
