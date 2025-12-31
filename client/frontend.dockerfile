@@ -11,6 +11,7 @@ RUN npm ci
 COPY . .
 
 RUN npm run build
+#Build and get the already built files to copy into stage 2
 
 
 FROM nginx:alpine

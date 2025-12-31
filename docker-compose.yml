@@ -10,7 +10,7 @@ services:
       - backend_db_network
     
   backend:
-    image: sammwaura/yolo_backend:v1.0.3
+    image: sammwaura/yolo_backend:v1.0.4
     build: 
       context: ./backend
       dockerfile: backend.dockerfile
@@ -23,12 +23,12 @@ services:
       - backend_frontend_network
 
   client:
-    image: sammwaura/yolo_frontend:v1.0.3
+    image: sammwaura/yolo_frontend:v1.0.4
     build:
       context: ./client
       dockerfile: frontend.dockerfile
     ports:
-      - "3000:3000"
+      - "3000:80" 
     depends_on:
       - backend
     networks:
@@ -45,4 +45,5 @@ networks:
 
 # Main components in my docker compose file:
 # yolo Db service, yolo BE service, yolo FE service, Volumes, Networks. For each service I then define {PORTS, VOLUMES, networks, depends_on, environment, image to build from, container name e.t.c}
+# Direct the traffic coming through host port 3000 to port 80 since nginx serves at port 80.
 

@@ -1,12 +1,19 @@
-FROM node:18-alpine
+FROM node:18-slim AS yolobackendbuilder
 
-WORKDIR /nodebackend
+WORKDIR /yolobackend
 
-COPY package.json package.json
+COPY package*.json .
 
-RUN npm install
+RUN npm ci 
+#Using npm ci for cleaner install in build stage
 
 COPY . .
+
+FROM node:18-slim
+
+WORKDIR /yolobackend
+
+COPY --from=yolobackendbuilder /yolobackend .
 
 EXPOSE 5000
 

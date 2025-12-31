@@ -21,4 +21,9 @@ MY LIST OF STEPS TO SOLVE THE IP
     Create Mongodb service
     Indicate the volume and the networks for each of the containers
 11. Test for spinning and pulling down of services using the docker compose file
+12. Transform my docker file to build musti- stage so that I cn reduce the size of the image. Avoid copying the following to my images {node modules, dev dependencies e.t.c} and only have what is required by the application to run at runtime.Multi-stage - have an image to build the app and have another to run the application
 
+13.  Transforming my dockerfiles to have multistage build to reduce the final images sizes.
+   1.Have a build stage in each file that uses
+   2.Build the FE and BE images 
+   3.Copy the built files into stage 2 of each docker file that will be the final image with a less size.
