@@ -1,22 +1,23 @@
-# YOLO PROJECT CONTAINERIZATION IMPLEMENTATION EXPLANATION
+### YOLO PROJECT CONTAINERIZATION IMPLEMENTATION EXPLANATION
 
 1. Choices of the base images to build the containers
 
 ##### Client Image - sammwaura/yolo_frontend:v1.0.4
-    The client image is built in mutlistage and has 2 stages; **Building** stage and **running** stage. The building stage uses the **node:18-slim** image that contains the already setup environment with the following
+The client image is built in mutlistage and has 2 stages; **Building** stage and **running** stage. The building stage uses the **node:18-slim** image that contains the already setup environment with the following
         .The node runtime - node.js,npm e.t.c
         .A minimal linux operatiing system that brings in the linux filesystem
         .Libraries to run the application and the dependencies.
-    The build stage image takes in the yolo application frontend source code and the dependencies installed using 'npm install' and builds it into build files based on the environment provided by the base image.
-    The run stage of the client image uses the image **nginx:alpine** which is an image with the functionality of serving static files. The build files that are gotten from the build stage are copied into a new image with nginx which serves the files at port 80. When doing docker compose, the traffic on the host at port 3000 is directed to port 80 which is the nginx default port in the container.
+The build stage image takes in the yolo application frontend source code and the dependencies installed using 'npm install' and builds it into build files based on the environment provided by the base image.
+The run stage of the client image uses the image **nginx:alpine** which is an image with the functionality of serving static files. The build files that are gotten from the build stage are copied into a new image with nginx which serves the files at port 80. When doing docker compose, the traffic on the host at port 3000 is directed to port 80 which is the nginx default port in the container.
 
 ##### Backend Image - sammwaura/yolo_backend:v1.0.4
-    The backend image is also build in a mutlistage way but makes use of one base image which is **node:18-slim**. The base images contains a few thing that make it ideal to add the project backend source code and create an image.The image has: 
-         .The node runtime - node.js verison 18, npm and node binaries
-         .A minimal linux debian operating system that provides the linux operating system
-         .System libraries that run node, npm modules and that open network ports.
+The backend image is also build in a mutlistage way but makes use of one base image which is **node:18-slim**. The base images contains a few thing that make it ideal to add the project backend source code and create an image.The image has: 
+   - The node runtime - node.js verison 18, npm and node binaries
+   - A minimal linux debian operating system that provides the linux operating system
+   - System libraries that run node, npm modules and that open network ports.
 
- 2. Dockerfile directives used in creating and running of each container
+
+2. Dockerfile directives used in creating and running of each container
     - The Client image is built from the **frontend.dockerfile** and the backend is built from **backend.dockerfile**. Each of the two files has two stages, one for build and the other as a running stage. The running stage becomes the final image from where the container is created and is a small sized image.
     - To run the containers, docker compose creates services from the earlier built images. A port is exposed for each container and the backend and client are added to the **yolo-backend-frontend-network**.
     - The images created and the containers that are run from those images are shown in the screenshot below.
@@ -53,7 +54,7 @@
 
 ![screenshot of the project UI](./projectimages/yoloUI.png) ![products](./projectimages/products.png)
 
-    - When any product is added, it is persisted in the mongodb and does not get lost when the services are spinned down.
+- When any product is added, it is persisted in the mongodb and does not get lost when the services are spinned down.
 
 7. Good practices such as Docker image tag naming standards for ease of identification of images and containers.
    - The client image is tagged correctly as **sammwaura/yolo_frontend:v1.0.4** while the backend image is tagged as **sammwaura/yolo_backend:v1.0.4**. The tags are version v1.0.4 to signify the previous stages when the docker files used to build the images were single stage. The two images have been successfully pushed to dockerhub as shown below:
