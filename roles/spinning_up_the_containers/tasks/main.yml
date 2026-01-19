@@ -3,16 +3,19 @@
 # tasks file for roles/spinning_up_the_containers
 # Remove existing containers safely
 - name: Remove existing mongodb container if any
-  shell: docker rm -f {{ db_container_name }} || true
+  shell: docker rm -f {{ db_container_name }}
+  ignore_errors: yes
 
 - name: Remove existing backend container if any
-  shell: docker rm -f {{ backend_container_name }} || true
+  shell: docker rm -f {{ backend_container_name }}
+  ignore_errors: yes
 
 - name: Remove existing frontend container if any
-  shell: docker rm -f {{ client_container_name }} || true
+  shell: docker rm -f {{ client_container_name }}
+  ignore_errors: yes
 
 
-# Run DB container
+# Run the yolo database container
 - name: Run the mongodb container
   shell: >
     docker run -d --name {{ db_container_name }}
@@ -22,7 +25,7 @@
     {{ mongodb_image }}
 
 
-# Build backend + frontend images
+#  Build the backend and Frontend image from the backend.dockerfile
 - name: Build the backend docker image
   shell: >
     docker build -t {{ backend_image }}
@@ -36,7 +39,7 @@
     {{ repository_destination }}/client
 
 
-# Run backend
+# Run the backend and the frontend containers
 - name: Run the backend container
   shell: >
     docker run -d --name {{ backend_container_name }}
@@ -47,8 +50,6 @@
 - name: Connect backend to frontend network
   shell: docker network connect {{ backend_frontend_network }} {{ backend_container_name }}
 
-
-# Run frontend
 - name: Run the frontend container
   shell: >
     docker run -d --name {{ client_container_name }}
