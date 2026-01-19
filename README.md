@@ -27,3 +27,17 @@ MY LIST OF STEPS TO SOLVE THE IP
    1.Have a build stage in each file that uses
    2.Build the FE and BE images 
    3.Copy the built files into stage 2 of each docker file that will be the final image with a less size.
+
+
+
+   LIST OF STEPS TO SOLVE THE VIRTUALIZATION IP - WEEK 6 IP
+   1. Initialize a server using virtual box and vagrant.
+   2. Confirm the server is running.
+   3. Create an ansible .cfg file that overrides the default ansible file
+   4. Create a hosts file with the fired up server
+   5. Create an ansible inventory/hosts file.
+   6. Create an ansible playbook with a list of test actions.
+   7. Create ansible roles.
+   8. Create tasks in the ansible roles to modularize them within the roles.
+   9. Detail the tasks necessary to deploy the application in the provisioned virtual server
+   10. Fire up the server once all is ready for it to be configured using the ansible playbook.
