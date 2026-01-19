@@ -10,10 +10,13 @@
     mongodb_image: mongo
     backend_image: sammwaura/yolo_backend:v1.0.4
     client_image: sammwaura/yolo_frontend:v1.0.4
+    app_repo: "https://github.com/samuelmwaura/yolo.git"
+    repository_destination: "/home/vagrant/yolo_application"
 
 
   tasks:  
   # Install and configure Docker
+  # configuring the repository bfore installing docker engine
     - name: Test Network connectivity
       ping:
     - name: Update apt package manager
@@ -32,19 +35,20 @@
         state: present
 
     - name: Add Docker GPG key using apt Keys
-        shell: |
+      shell: |
           curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
         args:
         creates: /etc/apt/keyrings/docker.gpg
 
     - name: Add Docker repository to APT sources
-        shell: |
+      shell: |
         echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
         https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
         > /etc/apt/sources.list.d/docker.list
       args:
         creates: /etc/apt/sources.list.d/docker.list
 
+#Now intalling docker engine
     - name: Install Docker Engine
       apt:
         name: 
@@ -53,3 +57,36 @@
           - containerd.io
         state: present
         update_cache: yes
+
+    - name: Add Vagrant user to docker group
+      user:
+        name: vagrant
+        groups: docker
+        append: yes
+
+    - name: Ensure Docker service is running
+      Service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Cloning the application repository into YoloBox
+      git:
+        repo: "{{ app_repo }}"
+        dest: "{{ repository_destination }}"
+        version: "main"
+        force: yes
+
+# Creating Docker networks and volumes
+
+    - name: Create the backend_db_network
+      shell: docker network create {{ backend_db_network }}
+
+    - name: Create the backend_frontend_network
+      shell: docker network create {{ backend_frontend_network }}
+
+    - name: Create the database mongodb_volume
+      shell: docker volume create {{ mongodb_volume }}
+
+
+
