@@ -42,3 +42,4 @@ MY LIST OF STEPS TO SOLVE THE IP
    9. Detail the tasks necessary to deploy the application in the provisioned virtual server
    10. Fire up the server once all is ready for it to be configured using the ansible playbook.
    11. Install docker into the provisioned server using ansible.
+   12. Leverage the containerization already done on FE,BE,DB to spin up the app contianers.

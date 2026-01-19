@@ -12,13 +12,44 @@
     client_image: sammwaura/yolo_frontend:v1.0.4
 
 
-  tasks:
+  tasks:  
+  # Install and configure Docker
     - name: Test Network connectivity
       ping:
-    - name: Update Server
+    - name: Update apt package manager
       apt:
         update_cache: yes
-    - name: Install Apache
+
+    - name: Install Docker dependencies from apt
       apt:
-        name: apache2
+        name: 
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - gnupg
+          - lsb-release
+          - git
         state: present
+
+    - name: Add Docker GPG key using apt Keys
+        shell: |
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+        args:
+        creates: /etc/apt/keyrings/docker.gpg
+
+    - name: Add Docker repository to APT sources
+        shell: |
+        echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+        https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+        > /etc/apt/sources.list.d/docker.list
+      args:
+        creates: /etc/apt/sources.list.d/docker.list
+
+    - name: Install Docker Engine
+      apt:
+        name: 
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        state: present
+        update_cache: yes
