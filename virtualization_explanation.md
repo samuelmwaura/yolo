@@ -35,14 +35,15 @@ The **hosts** file contains a detail of the servers to be managed using the play
 
    When the server is set running, the roles run in the order they are called in the playbook and eventually contribute one complete process of congiuring a server.
 
-   ![screenshot of the project UI](./projectimages/successful_run_with_roles.jpeg)
+   ![screenshot of the project UI](./projectimages/successful_run_no_roles.jpeg)
 
 3. Spinning up the application
    To fully realize the role of vagrant and ansible in infrustructure provisionning and configuration, this application **does not** make use of the docker compose file for orchestration of the Yolo application services. The Playbook.yaml contains variables that are called in roles and which setup everything from scratch to the very last bit of spinning up the functional containers.
 
-   The whole Yolo application has been confirmed as fully virtualized and running successfully in the virtual server when the command **Vagrant provision** is run. This is confirmed by the accessibity of the application when the private IP address is accessed **192.168.56.10: 3000**.
+   The whole Yolo application has been confirmed as fully virtualized and running successfully in the virtual server when the command **Vagrant provision** is run. This is confirmed by the accessibity of the application when the private IP address is accessed **192.168.56.10: 3000** in the browser. It launches the application as shown below. The products in the ecommerce site can be added and are persisted as well as shown.
 
    ![screenshot of the project UI](./projectimages/virtualizedUI.jpeg) 
+   ![screenshot of the project UI](./projectimages/Persisted%20Items.jpeg)
    ![screenshot of the project UI](./projectimages/successful_run_with_roles.jpeg)
     The products are also confirmed to be persisted in the database and accessible via the backend container as shown by the panel below:
 
