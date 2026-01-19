@@ -88,5 +88,43 @@
     - name: Create the database mongodb_volume
       shell: docker volume create {{ mongodb_volume }}
 
+#Remove any exisiting containers if they exist
+
+    - name: Remove existing mongodb container if any
+      shell: docker rm -f {{ db_container_name }}
+      ignore_errors: yes
+
+    - name: Remove existing backend container if any
+      shell: docker rm -f {{ backend_container_name }}
+      ignore_errors: yes
+
+    - name: Remove existing frontend container if any
+      shell: docker rm -f {{ client_container_name }}
+      ignore_errors: yes
+
+# Run the yolo database container
+
+    - name: Run the mongodb container
+      shell: >
+        docker run -d --name {{ db_container_name }}
+        -p 27017:27017
+        -v {{ mongodb_volume }}:/data/db
+        --network {{ backend_db_network }}
+        {{ mongodb_image }}
+
+# Build the backend and Frontend image from the backend.dockerfile
+
+    - name: Build the backend docker image
+      shell: >
+        docker build -t {{ backend_image }}
+        -f {{ repository_destination }}/backend/backend.dockerfile
+        {{ repository_destination }}/backend
+
+    - name: Build the frontend docker image
+      shell: >
+        docker build -t {{ client_image }}
+        -f {{ repository_destination }}/client/frontend.dockerfile
+        {{ repository_destination }}/client 
 
 
+     
