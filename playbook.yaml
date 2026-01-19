@@ -1,5 +1,17 @@
 - hosts: all
   become: true
+  vars:
+    mongodb_volume: yolo_app_data
+    backend_db_network: backend_db_network
+    backend_frontend_network: backend_frontend_network
+    db_container_name: yolo_mongodb
+    backend_container_name: yolo_backend
+    client_container_name: yolo_frontend
+    mongodb_image: mongo
+    backend_image: sammwaura/yolo_backend:v1.0.4
+    client_image: sammwaura/yolo_frontend:v1.0.4
+
+
   tasks:
     - name: Test Network connectivity
       ping:
