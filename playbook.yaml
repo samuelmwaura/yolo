@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: yoloapplication
   become: true
   vars:
     mongodb_volume: yolo_app_data
@@ -37,7 +37,7 @@
     - name: Add Docker GPG key using apt Keys
       shell: |
           curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-        args:
+      args:
         creates: /etc/apt/keyrings/docker.gpg
 
     - name: Add Docker repository to APT sources
@@ -65,7 +65,7 @@
         append: yes
 
     - name: Ensure Docker service is running
-      Service:
+      service:
         name: docker
         state: started
         enabled: yes

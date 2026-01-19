@@ -43,3 +43,5 @@ MY LIST OF STEPS TO SOLVE THE IP
    10. Fire up the server once all is ready for it to be configured using the ansible playbook.
    11. Install docker into the provisioned server using ansible.
    12. Leverage the containerization already done on FE,BE,DB to spin up the app contianers.
+   13. Do no 12 by: Building the images, running the db container, running the BE container, running the FE container, spinning up the server.
+   14. Try access the app by visiting the VM's IP.
