@@ -13,6 +13,7 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "ubuntu/jammy64"
+  config.vm.hostname = "YoloBox"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -32,7 +33,7 @@ Vagrant.configure("2") do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  # config.vm.network "private_network", ip: "192.168.33.10"
+  #config.vm.network "private_network", ip: "192.168.33.10"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -61,7 +62,8 @@ Vagrant.configure("2") do |config|
   #   vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-  #   vb.memory = "1024"
+  #   vb.memory = "2048"
+  #   vb.cpus = 2
   # end
   #
   # View the documentation for the provider you are using for more
@@ -77,5 +79,6 @@ Vagrant.configure("2") do |config|
   
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "playbook.yaml"
+    ansible.inventory_path = "hosts"
   end
 end
