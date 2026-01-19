@@ -24,3 +24,16 @@ Once the server has been provisioned, it is configured and ,ade ready using the 
 The **hosts** file contains a detail of the servers to be managed using the playbook that has been detailed in the application. For the case of the YOLO Application, the server is one and will have docker where all the 2 applications will run from.
 
 
+2. Ansible Roles
+    - To modularize the process of configuring the provision server, the ansible tasks have been broken down into roles that each hold a list of related tasks. Instead of explicit listing, the roles are called by name from the main playbook.yaml file .
+    - The yolo application configuration playbook.yaml contains 4 defined roles:
+        
+        1. Initial set up of the server - Check connection and updating the package manager.
+        2. Setting up the docker engine that will hold the application components.
+        3. Cloning the application from the repository and defining the network and volume where the data for the application will be persisted
+        4. Spinning up all the services in the server - Spinning up the FE, BE and the Mongo Db service.
+
+3. Spinning up the application
+   The whole Yolo application has been confirmed as fully virtualized and running successfully in the virtual server when the command **Vagrant provision** is run. This is confirmed by the accessibity of the application when the private IP address is accessed **192.168.56.10: 3000**.
+   
+    The products are also confirmed to be persisted in the database and accessible via the backend container as shown by the panel below
