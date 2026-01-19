@@ -126,5 +126,26 @@
         -f {{ repository_destination }}/client/frontend.dockerfile
         {{ repository_destination }}/client 
 
+# Run the backend and the frontend containers
+
+    - name: Run the backend container
+      shell: >
+        docker run -d --name {{ backend_container_name }}
+        -p 5001:5000
+        --network {{ backend_db_network }}
+        --network {{ backend_frontend_network }}
+        --link {{ db_container_name }}:mongodb
+        {{ backend_image }}
+
+    - name: Run the frontend container
+      shell: >
+        docker run -d --name {{ client_container_name }}
+        -p 3000:80
+        --network {{ backend_frontend_network }}
+        --link {{ backend_container_name }}:backend
+        {{ client_image }}
+
+        
+
 
      
