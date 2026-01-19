@@ -35,7 +35,7 @@ The **hosts** file contains a detail of the servers to be managed using the play
 
    When the server is set running, the roles run in the order they are called in the playbook and eventually contribute one complete process of congiuring a server.
 
-   ![screenshot of the project UI](./projectimages/successful_run_with_roles.jpeg) ![products](./projectimages/products.png)
+   ![screenshot of the project UI](./projectimages/successful_run_with_roles.jpeg)
 
 3. Spinning up the application
    To fully realize the role of vagrant and ansible in infrustructure provisionning and configuration, this application **does not** make use of the docker compose file for orchestration of the Yolo application services. The Playbook.yaml contains variables that are called in roles and which setup everything from scratch to the very last bit of spinning up the functional containers.
