@@ -35,5 +35,8 @@ The **hosts** file contains a detail of the servers to be managed using the play
 
 3. Spinning up the application
    The whole Yolo application has been confirmed as fully virtualized and running successfully in the virtual server when the command **Vagrant provision** is run. This is confirmed by the accessibity of the application when the private IP address is accessed **192.168.56.10: 3000**.
+
+   ![screenshot of the project UI](./projectimages/virtualizedUI.jpeg) ![products](./projectimages/products.png)
+   ![screenshot of the project UI](./projectimages/successful_run_with_roles.jpeg) ![products](./projectimages/products.png)
    
-    The products are also confirmed to be persisted in the database and accessible via the backend container as shown by the panel below
+    The products are also confirmed to be persisted in the database and accessible via the backend container as shown by the panel below:
