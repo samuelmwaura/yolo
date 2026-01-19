@@ -1,0 +1,16 @@
+- name: Clone application repository into YoloBox
+  git:
+    repo: "{{ app_repo }}"
+    dest: "{{ repository_destination }}"
+    version: "master"
+    force: yes
+
+- name: Create backend_db_network (if not exists)
+  shell: docker network inspect {{ backend_db_network }} >/dev/null 2>&1 || docker network create {{ backend_db_network }}
+
+- name: Create backend_frontend_network (if not exists)
+  shell: docker network inspect {{ backend_frontend_network }} >/dev/null 2>&1 || docker network create {{ backend_frontend_network }}
+
+- name: Create mongodb_volume (if not exists)
+  shell: docker volume inspect {{ mongodb_volume }} >/dev/null 2>&1 || docker volume create {{ mongodb_volume }}
+
