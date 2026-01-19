@@ -16,7 +16,7 @@
   shell: |
       curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
   args:
-  creates: /etc/apt/keyrings/docker.gpg
+    creates: /etc/apt/keyrings/docker.gpg
 
 - name: Add Docker repository to APT sources
   shell: |
@@ -24,7 +24,7 @@
     https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
     > /etc/apt/sources.list.d/docker.list
   args:
-  creates: /etc/apt/sources.list.d/docker.list
+    creates: /etc/apt/sources.list.d/docker.list
 
 - name: Install Docker Engine
   apt:

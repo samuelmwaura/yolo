@@ -12,3 +12,4 @@
   shell: docker network create {{ backend_frontend_network }}
 
 - name: Create the database mongodb_volume
+  shell: docker volume create {{ mongodb_volume }}
