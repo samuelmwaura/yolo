@@ -1,0 +1,23 @@
+appVersion: v1
+kind: Deployment
+metadata:
+  name: yolo-app-backend
+  labels:
+    app: yolo-app-backend.  #Identifier when relating this deployment to other objects
+  namespace: yolo-app-kubernetes
+spec:
+  replicas: 3 #3 instances of the pod will be created
+  selector:
+    matchLabels:
+      app: yolo-app-backend
+    template: #Template for the pods that are being managed
+      metadata:
+        labels: 
+          app: yolo-app-backend
+      spec:
+        containers:  #definition of the containers that will run inside the pod
+          - name: yolo-app-backend
+            image: gcr.io/yolo-app-kubernetes-project/backend:v1.0.4
+            ports:
+              - containerPort: 5001. #Port inside the container where the traffic is being directed
+
