@@ -1,4 +1,4 @@
-apiVersion: v1. #Version of the k8s API being used for this object
+apiVersion: v1 #Version of the k8s API being used for this object
 kind: Service
 metadata:
   name: yolo-mongodb
