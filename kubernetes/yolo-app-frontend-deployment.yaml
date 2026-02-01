@@ -17,6 +17,6 @@ spec:
       spec:
         containers:  #definition of the containers that will run inside the pod
           - name: yolo-app-frontend
-            image: gcr.io/yolo-app-kubernetes-project/frontend:v1.0.4
+            image: gcr.io/yolo-app-kubernetes-project/frontend:v2
             ports:
               - containerPort: 80. #Port inside the container where the traffic is being directed   
