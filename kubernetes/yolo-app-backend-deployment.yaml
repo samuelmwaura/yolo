@@ -19,5 +19,5 @@ spec:
           - name: yolo-app-backend
             image: gcr.io/yolo-app-kubernetes-project/backend:v1.0.4
             ports:
-              - containerPort: 5001. #Port inside the container where the traffic is being directed
+              - containerPort: 5000. #Port inside the container where the traffic is being directed
 
