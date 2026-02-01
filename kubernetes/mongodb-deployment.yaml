@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: yolo-app-mongodb
@@ -10,7 +10,7 @@ spec:
   selector:
     matchLabels:
       app: yolo-app-mongodb
-    template: #Template for the pods that are being managed
+  template: #Template for the pods that are being managed
       metadata:
         labels: 
           app: yolo-app-mongodb
@@ -21,7 +21,7 @@ spec:
             ports:
               - containerPort: 27017 #Port inside the container where the traffic is being directed
             volumeMounts:
-              - name: mongodb-pvc
+              - name: yolo-mongodb
                 mountPath: /data/db  #Mounting the volume to persist data
         volumes:
           - name: yolo-mongodb
