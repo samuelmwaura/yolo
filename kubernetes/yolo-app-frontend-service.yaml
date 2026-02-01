@@ -1,0 +1,15 @@
+appVersion: v1
+kind: Servce
+metadata:
+  name: yolo-app-frontend-service
+  labels:
+    app: yolo-app-frontend-service
+  namespace: yolo-app-kubernetes
+spec:
+  selector:
+    app: yolo-app-frontend  #Selects pods with the label 'app: yolo-app-frontend'
+  ports:
+    - protocol: TCP
+      port: 80  #Port on which the service is exposed
+      targetPort: 80  #Port on the pod to which traffic will be directed
+  type: LoadBalancer  #Service type that exposes the service externally using a cloud provider's load balancer. Fe needs be accesssed externally hence the lOADBALANCEER type of Service.
