@@ -1,0 +1,15 @@
+appVersion: v1. #Version of the k8s API being used for this object
+kind: Service
+metadata:
+  name: yolo-mongodb
+  labels:
+    app: yolo-mongodb
+  namespace: yolo-app-kubernetes
+spec:
+  selector:
+    app: yolo-app-mongodb  #Selects pods with the label 'app: yolo-app-mongodb'
+  ports:
+    - protocol: TCP
+      port: 27017  #Port on which the service is exposed
+      targetPort: 27017  #Port on the pod to which traffic will be directed
+  type: ClusterIP  #Service type that exposes the service on a cluster-internal IP address since only the backend will communicate with MongoDB within the yolo-app cluster.
