@@ -1,5 +1,5 @@
 appVersion: v1
-kind: Servce
+kind: Service
 metadata:
   name: yolo-app-frontend-service
   labels:
