@@ -3,14 +3,14 @@ kind: Deployment
 metadata:
   name: yolo-app-frontend
   labels:
-    app: yolo-app-frontend.  #Identifier when relating this deployment to other objects
+    app: yolo-app-frontend  #Identifier when relating this deployment to other objects
   namespace: yolo-app-kubernetes
 spec:
   replicas: 3 #3 instances of the pod will be created
   selector:
     matchLabels:
       app: yolo-app-frontend
-    template: #Template for the pods that are being managed
+  template: #Template for the pods that are being managed
       metadata:
         labels: 
           app: yolo-app-frontend
