@@ -18,6 +18,7 @@ spec:
         containers:  #definition of the containers that will run inside the pod
           - name: yolo-app-backend
             image: gcr.io/yolo-app-kubernetes-project/backend:v1.0.4
+            imagePullPolicy: Always
             ports:
               - containerPort: 5000. #Port inside the container where the traffic is being directed
 
