@@ -1,4 +1,4 @@
-appVersion: v1
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mongodb-pvc
@@ -12,4 +12,4 @@ spec:
 
 # This PVC will be referenced in the Mongodb-deployment to provide persistent storage for the database data.
 # For GKE, we do not create the PersistentVolume explicitly; GKE will automatically provision a PersistentVolume that satisfies this claim.
-# For minikube , a v has to be created.
+# For minikube, a pv has to be created.
