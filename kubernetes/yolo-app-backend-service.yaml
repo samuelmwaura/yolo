@@ -1,0 +1,15 @@
+appVersion: v1
+kind: Service
+metadata:
+  name: yolo-app-backend-service
+  labels:
+    app: yolo-app-backend-service
+  namespace: yolo-app-kubernetes
+spec:
+  selector:
+    app: yolo-app-backend  #Selects pods with the label 'app: yolo-app-backend'
+  ports:
+    - protocol: TCP
+      port: 5000  #Port on which the service is exposed
+      targetPort: 5000  #Port on the pod to which traffic will be directed
+  type: ClusterIP  #Servce type that exposes the service on a cluster-internal IP address since BE and Mongo wil only communicate within the yolo-app cluster.
