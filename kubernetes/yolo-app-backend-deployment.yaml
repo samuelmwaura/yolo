@@ -1,16 +1,16 @@
-apiVersion: v1
+apiVersion: apps/v1 #GKE does not seem to support api/version : v1
 kind: Deployment
 metadata:
   name: yolo-app-backend
   labels:
-    app: yolo-app-backend.  #Identifier when relating this deployment to other objects
+    app: yolo-app-backend  #Identifier when relating this deployment to other objects
   namespace: yolo-app-kubernetes
 spec:
   replicas: 3 #3 instances of the pod will be created
   selector:
     matchLabels:
       app: yolo-app-backend
-    template: #Template for the pods that are being managed
+  template: #Template for the pods that are being managed
       metadata:
         labels: 
           app: yolo-app-backend
