@@ -1,0 +1,15 @@
+appVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb-pvc
+  namespace: yolo-app-kubernetes
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi  #Requesting 2Gi of storage for MongoDB data
+
+# This PVC will be referenced in the Mongodb-deployment to provide persistent storage for the database data.
+# For GKE, we do not create the PersistentVolume explicitly; GKE will automatically provision a PersistentVolume that satisfies this claim.
+# For minikube , a v has to be created.
