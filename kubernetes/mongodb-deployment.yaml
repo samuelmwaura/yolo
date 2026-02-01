@@ -1,0 +1,23 @@
+appVersion: v1
+kind: Deployment
+metadata:
+  name: yolo-mongodb
+  labels:
+    app: yolo-mongodb  #Identifier when relating this deployment to other objects
+  namespace: yolo-app-kubernetes
+spec:
+  replicas: 1 #1 instance of the pod will be created
+  selector:
+    matchLabels:
+      app: yolo-mongodb
+    template: #Template for the pods that are being managed
+      metadata:
+        labels: 
+          app: yolo-mongodb
+      spec:
+        containers:  #definition of the containers that will run inside the pod
+          - name: yolo-mongodb
+            image: mongo
+            ports:
+              - containerPort: 27017 #Port inside the container where the traffic is being directed
+            
