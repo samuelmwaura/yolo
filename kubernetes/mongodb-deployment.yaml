@@ -20,4 +20,10 @@ spec:
             image: mongo
             ports:
               - containerPort: 27017 #Port inside the container where the traffic is being directed
-            
+            volumeMounts:
+              - name: yolo-app-data
+                mountPath: /data/db  #Mounting the volume to persist data
+        volumes:
+          - name: yolo-app-data
+            persistentVolumeClaim:
+              claimName: yolo-app-data-pvc  #Reference to the PVC for data persistence
