@@ -9,7 +9,8 @@ This is the claim volume that was used to claim a volume for the mongodb pods th
 ##### Deployments
 
 1. yolo-app-mongodb deployment
-This is the kubernetes object that deploys pods for the mongodb that stores data for the application. Only one pod is generated for the mongodb and it is connected to a persistent volume to make sure data entered about products on the yooly application is persistent. The connection happens via the claim done using the mongodb-pvc. Below is a screenshot of the mongodb pod.
+This is the kubernetes object that deploys pods for the mongodb that stores data for the application. Only one pod is generated for the mongodb and it is connected to a persistent volume to make sure data entered about products on the yooly application is persistent. The containers in the pod run from the **mongodb** public image that is fetched from dockerhub.
+The connection happens via the claim done using the mongodb-pvc. Below is a screenshot of the mongodb pod.
 
 ![screenshot of images and running containers](../projectimages/Mongodb%20pods.png)
 
@@ -24,7 +25,8 @@ The pods here run containers made from the image **gcr.io/yolo-app-kubernetes-pr
 The yolo-backend deployment connects to the mongodb replica set using services exposed for both the BE and mONGODB. The two services are of type ClusterIp since communication between the Backend and the database happens internally within the cluster hence no need to expose the two to the public.
 
 3. yolo-app-frontend deployment
-This is the deployment that sets the frontend pods active. The deployment specifies a total of 3 instances of the same frontend pod running and all are labelled **yolo-app-frontend**. The label is used to select them by the FE service that sets the pods accessible to the public since they are the client facing end of the yolo application. The image below shows the list of pods running for BE, FE and the mongodb.
+This is the deployment that sets the frontend pods active. The deployment specifies a total of 3 instances of the same frontend pod running and all are labelled **yolo-app-frontend**. The label is used to select them by the FE service that sets the pods accessible to the public since they are the client facing end of the yolo application.
+The pods run containers from the image **gcr.io/yolo-app-kubernetes-project/frontend:v2** that is deployed to the Google Artefacts registry. The image below shows the list of pods running for BE, FE and the mongodb.
 
 ![screenshot of images and running containers](../projectimages/All%20Pods%20Running.png)
 
