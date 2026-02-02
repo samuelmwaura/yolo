@@ -1,5 +1,16 @@
 ### YOLO PROJECT KUBERNETES IMPLEMENTATION EXPLANATION
 
+##### Cluster and namespace
+The cluster and the namespace created in the Google Kubernetes Engine for this project are as listed below
+1. Cluster - gke_yolo-app-kubernetes-project_us-central1-a_yolo-app-kubernetes-cluster
+2. Namespace - yolo-app-kubernetes
+3. Nodes - gke-yolo-app-kubernetes--default-pool-6076891d-f4n4
+           gke-yolo-app-kubernetes--default-pool-6076891d-x2cp
+
+The kubectl context is set to this cluster context from the earlier locally pointed minikube cluster. The foloowing screenshot shows the cluster, nodes and the namespace and their current statuses.
+
+![screenshot of images and running containers](../projectimages/Cluster,nodes,namespace.png)
+
 ##### PersistentClaimVolume
 1. mongodb-pvc
 This is the claim volume that was used to claim a volume for the mongodb pods that are running the Database of the yolo application. Once the mongodb deployment is run, the pods are connected to a persisten volume using this claim. Here in GKE, we did not create a persistent Volume but instead this was allocated to us automaltically by GKE when we created this claim. The claim remained in pending state until the mongodb-deployment was applied. The screenshot below shows the pvc after being applied, awaiting allocation to a deployment.
