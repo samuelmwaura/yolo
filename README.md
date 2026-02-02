@@ -1,4 +1,4 @@
-MY LIST OF STEPS TO SOLVE THE IP
+MY LIST OF STEPS TO SOLVE THE IPs
 
 1. Make sure that the app is running locally in my machine
    Fire up the FE server by {npm install, npm start}
